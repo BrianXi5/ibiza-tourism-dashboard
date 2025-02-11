@@ -47,7 +47,7 @@ forecast, forecast_dates = forecast_tourism(data)
 # Plot Actual vs Forecasted Data
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.plot(data.index, data['Total_Arrivals'], label='Actual Arrivals')
-ax.plot(forecast_dates, forecast, linestyle='dashed', label='Forecasted Arrivals", color='red')
+ax.plot(forecast_dates, forecast, linestyle='dashed', label="Forecasted Arrivals", color='red')
 ax.set_xlabel("Date")
 ax.set_ylabel("Number of Tourists")
 ax.set_title("Ibiza Daily Tourist Arrivals & Forecast")
