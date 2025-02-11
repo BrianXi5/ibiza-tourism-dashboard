@@ -1,0 +1,33 @@
+name: Auto-Update Tourist Data
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs every day at midnight (UTC)
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: pip install pandas numpy
+
+      - name: Run Update Script
+        run: python update_data.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add ibiza_tourist_data.csv
+          git commit -m "Automated data update"
+          git push
